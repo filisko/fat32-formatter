@@ -1,5 +1,7 @@
 # FAT32 USB devices formatter
 
+Restore your USB device to its original state while formatting it as FAT32.
+
 ## Why another USB formatter?
 
 Yes, I know that this specific type of software that allows formatting USB devices with FAT32 format is not lacking, but the truth is that I do not intend to offer an alternative to existing programs for this task, much less.
