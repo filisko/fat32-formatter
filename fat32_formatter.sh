@@ -34,7 +34,7 @@ if [ $LANGUAGE == 'es' ]; then
     MSG_FORMAT_CONFIRMATION="¿Estás seguro de que deseas formatear este dispositivo? <b>$dev</b>"
     MSG_FORMAT_CONFIRMATION_YES="Sí, estoy seguro"
     MSG_FORMAT_CONFIRMATION_NO="No, mejor volver"
-    MSG_ENTER_LABEL="Introduce la nueva etiqueta del dispositivo"
+    MSG_ENTER_LABEL="Introduce la nueva etiqueta del dispositivo (máx. 11 carácteres)"
     MSG_ENTER_LABEL_ERROR="¡Debes introducir una nueva etiqueta para el dispositivo! Inténtalo de nuevo"
     MSG_UNMOUTING="Desmontando particiones montadas del dispositivo ..."
     MSG_FORMATTING="Limpiando tabla de particiones y formateando ..."
@@ -55,7 +55,7 @@ else
     MSG_FORMAT_CONFIRMATION="Are you sure you want to format this device? <b>$dev</b>"
     MSG_FORMAT_CONFIRMATION_YES="Yes, I'm sure"
     MSG_FORMAT_CONFIRMATION_NO="No, better go back"
-    MSG_ENTER_LABEL="Enter the new device label"
+    MSG_ENTER_LABEL="Enter the new device label (max. 11 characters)"
     MSG_ENTER_LABEL_ERROR="You must enter a new label for the device! Try again"
     MSG_UNMOUTING="Removing mounted partitions from the device ..."
     MSG_FORMATTING="Clearing partition table and formatting ..."
@@ -67,7 +67,7 @@ while true; do
     oldifs=$IFS
     IFS=';'
     lsblk=$(sudo lsblk -o LABEL,MODEL,NAME,SIZE,TYPE,HOTPLUG -n -P -p | grep 'HOTPLUG="1"' | grep 'TYPE="disk"' | sed 's/ TYPE="disk" HOTPLUG="1"//' | cut -d '"' -f 2,4,6,8 | tr '"' ';' | tr "\n" ";")
-    dev=$(zenity --list --width=500 --height=300 --print-column=3 --title="$MSG_TITLE" --text="$MSG_CHOOSE_DEVICE" --ok-label="$MSG_FORMAT" --cancel-label="$MSG_CLOSE" --column="$MSG_MODEL" --column="$MSG_LABEL" --column="$MSG_PATH" --column="$MSG_SIZE" $lsblk)
+    dev=$(zenity --list --width=500 --height=300 --print-column=3 --title="$MSG_TITLE" --text="$MSG_CHOOSE_DEVICE" --ok-label="$MSG_FORMAT" --cancel-label="$MSG_CLOSE" --column="$MSG_LABEL" --column="$MSG_MODEL" --column="$MSG_PATH" --column="$MSG_SIZE" $lsblk)
 
     case $? in
     0)
