@@ -18,7 +18,7 @@ I will leave some links related to this problem.
 * [AskUbuntu - 16GB pen drive showing 2MB space after formatting on windows 7](http://askubuntu.com/questions/586118/16gb-pen-drive-showing-2mb-space-after-formatting-on-windows-7)
 * [AskUbuntu - USB's storage capacity reduced to 2 MB from 16 GB](http://askubuntu.com/questions/289971/usbs-storage-capacity-reduced-to-2-mb-from-16-gb)
 * [Superuser - How do I fix my USB drive to get its original 8GB size back?](https://superuser.com/questions/382242/how-do-i-fix-my-usb-drive-to-get-its-original-8gb-size-back)
-* [Restore Your USB Key to its original state](https://www.pendrivelinux.com/restoring-your-usb-key-partition/)
+* [Pendrivelinux - Restore Your USB Key to its original state](https://www.pendrivelinux.com/restoring-your-usb-key-partition/)
 
 
 ## How to Install
