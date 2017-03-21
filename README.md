@@ -4,7 +4,7 @@
 
 Yes, I know that this specific type of software that allows formatting USB devices with FAT32 format is not lacking, but the truth is that I do not intend to offer an alternative to existing programs for this task, much less.
 
-What I intend is to speed up the process of fixing when a device begins to have problems in relation to the loss of its total capacity, ie if our device had the total capacity of 16 GB of memory, our computer will show us that it has Any other capacity except that.
+What I intend is to speed up the process of fixing when a device begins to have problems in relation to the loss of its total capacity, ie if our device had the total capacity of 16 GB of memory, our computer will show us that it has any other capacity except that one.
 
 This mostly happens when we use tools to burn ISO files to our USB device and then later, after reintroducing our USB device to our computer, it seems that our USB device "has lost some of its capacity", and here Where the small program that I just developed comes into play, its main task could be said to be to actually clean the partition table of our device and create a new one, and in this way we would restore our device to its original state, and not just format it with FAT32 format, since 99% of the situations in which it seems that our device has lost part of its total capacity, is because our device has an incorrect or damaged partition table.
 
