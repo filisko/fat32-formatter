@@ -19,7 +19,7 @@
 
 # MESSAGES
 LANGUAGE=${LANG:0:2}
-if [ $LANGUAGE == 'es' ]; then
+if [ $LANGUAGE == 'en' ]; then
     MSG_TITLE="Formateador FAT32 de dispositivos USB"
     MSG_DEPENDENCY_TITLE="Dependencia insatisfecha"
     MSG_DEPENDENCY_MESSAGE="El siguiente ejecutable (dependencia) no pudo ser encontrado"
@@ -58,7 +58,7 @@ else
     MSG_PATH="Device path"
     MSG_SIZE="Size"
     MSG_CONTINUE="Continue"
-    MSG_BACK="Go Back"
+    MSG_BACK="Go back"
     MSG_FORMAT_CONFIRMATION="Are you sure you want to format this device? <b>$dev</b>"
     MSG_FORMAT_CONFIRMATION_YES="Yes, I'm sure"
     MSG_FORMAT_CONFIRMATION_NO="No, better go back"
