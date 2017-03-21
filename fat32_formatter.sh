@@ -20,7 +20,9 @@
 # MESSAGES
 LANGUAGE=${LANG:0:2}
 if [ $LANGUAGE == 'es' ]; then
-    MSG_TITLE="Formatear dispositivo USB como FAT32"
+    MSG_TITLE="Formateador FAT32 de dispositivos USB"
+    MSG_DEPENDENCY_TITLE="Dependencia insatisfecha"
+    MSG_DEPENDENCY_MESSAGE="El siguiente ejecutable (dependencia) no pudo ser encontrado"
     MSG_CHOOSE_DEVICE="Seleccione el dispositivo USB que desee formatear con formato FAT32"
     MSG_CHOOSE_DEVICE_ERROR="No has seleccionado ningún dispositivo USB para formatear"
     MSG_FORMAT="Formatear"
@@ -40,8 +42,10 @@ if [ $LANGUAGE == 'es' ]; then
     MSG_FORMATTING="Limpiando tabla de particiones y formateando ..."
     MSG_FORMATTING_STARTED="Formateo iniciado"
     MSG_FORMATTING_SUCCESS="¡Dispositivo formateado con éxito!"
+    MSG_ROOT="Necesito permisos de administrador para listar los dispositivos USB y formatear el que elijas."
 else
-    MSG_TITLE="Format USB device as FAT32"
+    MSG_TITLE="FAT32 USB devices formatter"
+    MSG_DEPENDENCY=""
     MSG_CHOOSE_DEVICE="Select the USB device you want to format with FAT32 format"
     MSG_CHOOSE_DEVICE_ERROR="You have not selected any USB device to format"
     MSG_FORMAT="Format"
@@ -61,6 +65,23 @@ else
     MSG_FORMATTING="Clearing partition table and formatting ..."
     MSG_FORMATTING_STARTED="Formatting started"
     MSG_FORMATTING_SUCCESS="Device successfully formatted!"
+    MSG_ROOT="I need administrator permissions to list the USB devices and format the one you choose."
+fi
+
+# DEPENDENCIES
+dependencies=(dd lsblk zenity gksudo umount mkdosfs grep sed cut tr)
+for dependency in ${dependencies[*]}
+do
+    if [ ! $(which $dependency) ]; then
+        zenity --error --title="$MSG_TITLE - $MSG_DEPENDENCY_TITLE" --text="`printf "$MSG_DEPENDENCY_MESSAGE: <b>$dependency</b>\n\nInstala la dependencia y vuelve a intentarlo."`"
+        exit
+    fi
+done
+
+# SUDO PRIVILEGES
+if [ $EUID != 0 ]; then
+    gksudo "$0" -m "`printf "<b>$MSG_TITLE</b>\n\n$MSG_ROOT"`"
+    exit $?
 fi
 
 while true; do
