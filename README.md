@@ -21,7 +21,7 @@ I will leave some links related to this problem.
 * [Restore Your USB Key to its original state](https://www.pendrivelinux.com/restoring-your-usb-key-partition/)
 
 
-## Install
+## How to Install
 
 You can download the script through curl, add the execution bit, and open it. Just execute the following three lines.
 
@@ -31,7 +31,7 @@ chmod +x fat32_formatter.sh
 ./fat32_formatter.sh
 ```
 
-## How to use
+## How to Use
 
 ### Step 1: Choose the USB device that you want to format.
 
