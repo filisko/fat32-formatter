@@ -23,6 +23,7 @@ if [ $LANGUAGE == 'es' ]; then
     MSG_TITLE="Formateador FAT32 de dispositivos USB"
     MSG_DEPENDENCY_TITLE="Dependencia insatisfecha"
     MSG_DEPENDENCY_MESSAGE="El siguiente ejecutable (dependencia) no pudo ser encontrado"
+    MSG_DEPENDENCY_INSTALL="Por favor, instale la dependencia y vuelva a intentarlo."
     MSG_CHOOSE_DEVICE="Seleccione el dispositivo USB que desee formatear con formato FAT32"
     MSG_CHOOSE_DEVICE_ERROR="No has seleccionado ningún dispositivo USB para formatear"
     MSG_FORMAT="Formatear"
@@ -45,7 +46,9 @@ if [ $LANGUAGE == 'es' ]; then
     MSG_ROOT="Necesito permisos de administrador para listar los dispositivos USB y formatear el que elijas."
 else
     MSG_TITLE="FAT32 USB devices formatter"
-    MSG_DEPENDENCY=""
+    MSG_DEPENDENCY_TITLE="Unsatisfied dependency"
+    MSG_DEPENDENCY_MESSAGE="The following executable (dependency) could not be found"
+    MSG_DEPENDENCY_INSTALL="Please install the dependency and try again."
     MSG_CHOOSE_DEVICE="Select the USB device you want to format with FAT32 format"
     MSG_CHOOSE_DEVICE_ERROR="You have not selected any USB device to format"
     MSG_FORMAT="Format"
@@ -62,18 +65,18 @@ else
     MSG_ENTER_LABEL="Enter the new device label (max. 11 characters)"
     MSG_ENTER_LABEL_ERROR="You must enter a new label for the device! Try again"
     MSG_UNMOUTING="Removing mounted partitions from the device ..."
-    MSG_FORMATTING="Clearing partition table and formatting ..."
+    MSG_FORMATTING="Wiping partition table and formatting ..."
     MSG_FORMATTING_STARTED="Formatting started"
     MSG_FORMATTING_SUCCESS="Device successfully formatted!"
     MSG_ROOT="I need administrator permissions to list the USB devices and format the one you choose."
 fi
 
 # DEPENDENCIES
-dependencies=(dd lsblk zenity gksudo umount mkdosfs grep sed cut tr)
+dependencies=(dd lsblk zenity gksudo mount umount mkdosfs grep sed cut tr)
 for dependency in ${dependencies[*]}
 do
     if [ ! $(which $dependency) ]; then
-        zenity --error --title="$MSG_TITLE - $MSG_DEPENDENCY_TITLE" --text="`printf "$MSG_DEPENDENCY_MESSAGE: <b>$dependency</b>\n\nInstala la dependencia y vuelve a intentarlo."`"
+        zenity --error --title="$MSG_TITLE - $MSG_DEPENDENCY_TITLE" --text="`printf "$MSG_DEPENDENCY_MESSAGE: <b>$dependency</b>\n\n$MSG_DEPENDENCY_INSTALL"`"
         exit
     fi
 done
