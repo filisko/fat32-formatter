@@ -23,7 +23,7 @@ I will leave some links related to this problem.
 
 ## How to Install
 
-You can download the script through curl, add the execution bit, and open it. Just execute the following three lines (once opened it will ask you for your sudo password)
+You can download the script through curl, add the execution bit, and open it. Just execute the following three lines (once opened it will ask for your sudo password)
 
 ```
 curl https://raw.githubusercontent.com/filisko/fat32-formatter/master/fat32_formatter.sh > fat32_formatter.sh
