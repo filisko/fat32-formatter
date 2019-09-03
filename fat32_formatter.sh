@@ -1,7 +1,7 @@
 #!/bin/bash
 # FAT32 FORMATTER
 #
-# Copyright (C) 2017 Filis Futsarov
+# Copyright (C) 2019 Filis Futsarov
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -21,6 +21,7 @@
 LANGUAGE=${LANG:0:2}
 if [ $LANGUAGE == 'es' ]; then
     MSG_TITLE="Formateador FAT32 de dispositivos USB"
+    MSG_SUDO="Introduzca la contraseña sudo porfavor"
     MSG_DEPENDENCY_TITLE="Dependencia insatisfecha"
     MSG_DEPENDENCY_MESSAGE="El siguiente ejecutable (dependencia) no pudo ser encontrado"
     MSG_DEPENDENCY_INSTALL="Por favor, instale la dependencia y vuelva a intentarlo."
@@ -46,6 +47,7 @@ if [ $LANGUAGE == 'es' ]; then
     MSG_ROOT="Necesito permisos de administrador para listar los dispositivos USB y formatear el que elijas."
 else
     MSG_TITLE="FAT32 USB devices formatter"
+    MSG_SUDO="Enter your sudo password please"
     MSG_DEPENDENCY_TITLE="Unsatisfied dependency"
     MSG_DEPENDENCY_MESSAGE="The following executable (dependency) could not be found"
     MSG_DEPENDENCY_INSTALL="Please install the dependency and try again."
@@ -72,7 +74,7 @@ else
 fi
 
 # DEPENDENCIES
-dependencies=(dd lsblk zenity gksudo mount umount mkdosfs grep sed cut tr)
+dependencies=(dd lsblk zenity mount umount mkdosfs grep sed sudo cut tr)
 for dependency in ${dependencies[*]}
 do
     if [ ! $(which $dependency) ]; then
@@ -82,8 +84,8 @@ do
 done
 
 # SUDO PRIVILEGES
-if [ $EUID != 0 ]; then
-    gksudo "$0" -m "`printf "<b>$MSG_TITLE</b>\n\n$MSG_ROOT"`"
+if ! sudo -n true 2>/dev/null; then
+    zenity --password --title="$MSG_TITLE" --text="$MSG_SUDO" | sudo -S "$0"
     exit $?
 fi
 
